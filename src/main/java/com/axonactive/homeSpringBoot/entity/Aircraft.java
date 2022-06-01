@@ -1,6 +1,7 @@
 package com.axonactive.homeSpringBoot.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +17,6 @@ import javax.validation.constraints.Size;
 @Table
 public class Aircraft {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull
     private Integer id;
 

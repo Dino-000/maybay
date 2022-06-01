@@ -1,12 +1,14 @@
 package com.axonactive.homeSpringBoot.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +16,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "certificates")
 public class Certificate {
     @Id
-    @NotNull // Do I have to put @NotNull in a field has GeneratedValue?
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
