@@ -39,4 +39,20 @@ public class FlightServiceImplTest {
         assertEquals(8,flightService.countByDepartureTerminal("SGN"));
     }
 
+    //13.	Cho biết các loại máy bay có thể thực hiện chuyến bay VN280.
+    @Test
+    void testFindById_shouldReturnFlightWithIDVN280_whenInputVN280(){
+        assertEquals("VN280",flightService.findById("VN280").get().getId());
+    }
+    //14.	Cho biết các chuyến bay có thể ñược thực hiện bởi máy bay Airbus A320.
+    @Test
+    void testFindBySpecificAircraftCanExecute_shouldReturn15_whenAirBusA320(){
+        assertEquals(15,flightService.findBySpecificAircraftCanExecute("Airbus A320").size());
+    }
+
+//    @Test
+//    void testfindBySpecificAircraftCanExecute_shouldReturn15_whenAirBusA320(){
+//        assertEquals("VN280",flightService.findBySpecificAircraftCanExecute("Airbus A320").size());
+//    }
+
 }

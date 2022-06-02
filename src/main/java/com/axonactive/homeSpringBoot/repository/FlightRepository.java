@@ -18,7 +18,10 @@ public interface FlightRepository extends JpaRepository<Flight,String > {
 
     //Có bao nhiêu chuyến bay xuất phát từ Sài Gòn (SGN).
 //    @Query(value ="SELECT COUNT(f.id) FROM Flight AS f WHERE f.departureTerminal='SaiGon' ")
+
+    List<Flight> findByDistanceLessThan(Integer distance);
+
+  Flight findFirstBy();
+
     Integer countByDepartureTerminal(String departureTerminal);
-
-
 }

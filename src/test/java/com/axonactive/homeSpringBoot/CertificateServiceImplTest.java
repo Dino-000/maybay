@@ -8,6 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -34,7 +38,12 @@ public class CertificateServiceImplTest {
 
     @Test
     void testDangTestAirBusVaBoeingNha(){
-        assertEquals(4,certificateService.dangTestAirBusVaBoeingNha().size());
+        assertEquals(4,certificateService.dangTestAirBusVaBoeingNha("Boeing","Airbus").size());
+    }
+
+    @Test
+    void testFindByAircraftTypeContaining_shouldReturn28_WhenInputBoeing(){
+        assertEquals(28,certificateService.findByAircraftTypeContaining("Boeing").size());
     }
 
 

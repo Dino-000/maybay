@@ -1,6 +1,7 @@
 package com.axonactive.homeSpringBoot;
 
 import com.axonactive.homeSpringBoot.Service.AircraftService;
+import com.axonactive.homeSpringBoot.Service.FlightService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class AircraftServiceImplTest {
     @Autowired
     AircraftService aircraftService;
 
+
     @Test
     void testFindByDistanceGreaterThan_shouldReturn4Aircraft_whenInput1000(){
         assertEquals(4,aircraftService.findByDistanceGreaterThan(10000).size());
@@ -25,4 +27,17 @@ public class AircraftServiceImplTest {
     void testCountByTypeContaining_shouldReturn6_whenInput747(){
         assertEquals(6,aircraftService.countByTypeContaining("Boeing"));
     }
+
+    //13.	Cho biết các loại máy bay có thể thực hiện chuyến bay VN280.
+    @Test
+    void testFindAircraftTypeAvailableForSpecificFlight_shouldReturn1_whenInputFlightVN280(){
+        assertEquals(1,aircraftService.findAircraftTypeAvailableForSpecificFlight("VN280").size());
+    }
+
+    @Test
+    void testFindByType_shouldReturn1_whenInputFlightVN280(){
+        assertEquals(0,aircraftService.findByType("Airbus 320").size());
+    }
+
+
 }

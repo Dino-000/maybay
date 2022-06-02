@@ -2,17 +2,18 @@ package com.axonactive.homeSpringBoot.repository;
 
 import com.axonactive.homeSpringBoot.entity.Aircraft;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AircraftRepository extends JpaRepository<Aircraft, Integer> {
-  // 2.	Cho biết các loại máy bay có tầm bay lớn hơn 10,000km.
   List<Aircraft> findByDistanceGreaterThan(Integer minRange);
-  // Có bao nhiêu loại máy báy Boeing.
-    Integer countByTypeContaining(String containingWord);
+  Integer countByTypeContaining(String containingWord);
+
+  List<Aircraft> findByTypeContaining(String containingWord);
+  List<Aircraft> findByType(String type);
 
 
 }

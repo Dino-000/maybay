@@ -8,15 +8,19 @@ import com.axonactive.homeSpringBoot.repository.AircraftRepository;
 import com.axonactive.homeSpringBoot.repository.FlightRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class FlightServiceImpl implements FlightService {
     @Autowired
     FlightRepository flightRepository;
+    @Autowired
+    AircraftService aircraftService;
     @Override
     public List<Flight> findByArrivalTerminal(String arrivalTerminal) {
         return flightRepository.findByArrivalTerminal(arrivalTerminal);
@@ -36,5 +40,17 @@ public class FlightServiceImpl implements FlightService {
     public Integer countByDepartureTerminal(String departureTerminal) {
 
     return flightRepository.countByDepartureTerminal(departureTerminal);
+    }
+
+    @Override
+    public Optional<Flight> findById(String id) {
+        return flightRepository.findById(id);
+    }
+
+
+
+    @Override
+    public List<Flight> findBySpecificAircraftCanExecute(String aircraftType) {
+        return flightRepository.findByDistanceLessThan(aircraftService.findByType(aircraftType).get(0).getDistance());
     }
 }
