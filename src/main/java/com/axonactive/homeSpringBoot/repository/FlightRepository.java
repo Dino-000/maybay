@@ -4,6 +4,7 @@ import com.axonactive.homeSpringBoot.entity.Flight;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalTime;
 import java.util.List;
 
 public interface FlightRepository extends JpaRepository<Flight,String > {
@@ -21,7 +22,6 @@ public interface FlightRepository extends JpaRepository<Flight,String > {
 
     List<Flight> findByDistanceLessThan(Integer distance);
 
-  Flight findFirstBy();
-
     Integer countByDepartureTerminal(String departureTerminal);
+    List<Flight> findByDepartureTimeBefore(LocalTime time);
 }

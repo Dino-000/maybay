@@ -10,6 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalTime;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -50,9 +53,39 @@ public class FlightServiceImplTest {
         assertEquals(15,flightService.findBySpecificAircraftCanExecute("Airbus A320").size());
     }
 
-//    @Test
-//    void testfindBySpecificAircraftCanExecute_shouldReturn15_whenAirBusA320(){
-//        assertEquals("VN280",flightService.findBySpecificAircraftCanExecute("Airbus A320").size());
-//    }
+    //17.	Giả sử một hành khách muốn đi thẳng từ ga A đến ga B rồi quay trở về ga A. Cho biết các đường bay nào có thể đáp ứng yêu cầu này.
+    @Test
+    void testFindRoundTripFlight_shouldReturn2_whenCheckSize(){
+        assertEquals(2,flightService.findRoundTripFlight().size());
+    }
+
+
+    //18. Với mỗi ga có chuyến bay xuất phát từ đó cho biết có bao nhiêu chuyến bay khởi hành từ ga đó.
+    @Test
+    void testCountFlightPerTerminal_shouldReturn8_whenCheckSize(){
+        assertEquals(6,flightService.countFlightPerTerminal().size());
+        assertEquals(8,flightService.countFlightPerTerminal().get("SGN"));
+    }
+
+    //19 Với mỗi ga có chuyến  bay xuất phát từ đó cho biết tổng chi phí phải trả cho phi công lái các chuyến bay khởi hành từ ga đó.
+    @Test
+    void testSumPilotSalaryPerTerminal_shouldReturn6_whenCheckSize(){
+        assertEquals(6,flightService.sumPilotSalaryPerTerminal().size());
+        assertEquals(744,flightService.sumPilotSalaryPerTerminal().get("HAN"));
+    }
+    //20.	Cho biết danh sách các chuyến bay có thể khởi hành trước 12:00
+    @Test
+    void testFindFlightDepartureTimeBefore_shouldReturn11_whenCheckSize(){
+        assertEquals(11,flightService.findByDepartureTimeBefore(LocalTime.parse("12:00:00")).size());
+    }
+
+    //21.Với mỗi địa điểm xuất phát cho biết có bao nhiêu chuyến bay có thể khởi hành trước 12:00.
+    @Test
+    void testCountFlightPerDepartureTerminal_shouldReturn5_whenCheckSizr(){
+        assertEquals(5,flightService.countFlightPerDepartureTerminal().size());
+        assertEquals(5,flightService.countFlightPerDepartureTerminal().get("SGN"));
+    }
+
+
 
 }

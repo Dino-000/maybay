@@ -1,6 +1,9 @@
 package com.axonactive.homeSpringBoot.repository;
 
+import com.axonactive.homeSpringBoot.Service.Dto.CertificateDto.CertificateMaxAircraftRangeOfPilotCanUseMoreThan3AircraftDto;
+import com.axonactive.homeSpringBoot.Service.Dto.CertificateDto.CertificateNumberOfAirCraftPerPilotDto;
 import com.axonactive.homeSpringBoot.entity.Certificate;
+import com.axonactive.homeSpringBoot.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -29,4 +32,23 @@ public interface CertificateRepository extends JpaRepository<Certificate, Intege
 
 
     List<Certificate> findByAircraftTypeContaining(String containingWord);
+    Integer countByEmployee(Employee employee);
+
+  @Query(
+      value =
+          "select new com.axonactive.homeSpringBoot.Service.Dto.CertificateDto.CertificateMaxAircraftRangeOfPilotCanUseMoreThan3AircraftDto(c.employee.id, max(c.aircraft.distance)) "
+              + "from Certificate c "
+              + "where c.employee.id in (select c.employee.id "
+              + "from Certificate c "
+              + "group by c.employee.id "
+              + "having count(c.employee.id)> 3) "
+              + "group by c.employee.id")
+  List<CertificateMaxAircraftRangeOfPilotCanUseMoreThan3AircraftDto>
+      findMaxDistanceOfEmployeeCanUseMoreThan3AirCrafts();
+
+  @Query(value = "SELECT new com.axonactive.homeSpringBoot.Service.Dto.CertificateDto.CertificateNumberOfAirCraftPerPilotDto(c.employee.id, COUNT(c.aircraft)) " +
+          "FROM Certificate c " +
+          "GROUP BY c.employee.id " +
+          "ORDER BY COUNT(c.aircraft) DESC")
+    List<CertificateNumberOfAirCraftPerPilotDto> findNumberOfAircraftPerPilot();
 }
