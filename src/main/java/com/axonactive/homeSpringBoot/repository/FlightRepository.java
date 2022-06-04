@@ -24,4 +24,11 @@ public interface FlightRepository extends JpaRepository<Flight,String > {
 
     Integer countByDepartureTerminal(String departureTerminal);
     List<Flight> findByDepartureTimeBefore(LocalTime time);
+
+    @Query(value="select f\n" +
+            "from Flight f\n" +
+            "where distance < (select min(distance)\n" +
+            "\t\t\t from Aircraft\n" +
+            "\t\t\t where type like 'Boeing%')")
+    List<Flight> findByAllBoeingCanExecute();
 }

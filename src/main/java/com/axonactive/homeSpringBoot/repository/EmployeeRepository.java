@@ -20,4 +20,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
             "WHERE e.id NOT IN ( SELECT c.employee.id " +
             "FROM Certificate c )")
     List<Employee> findEmployeeNotAPilot();
+
+    Employee findFirstByOrderBySalaryDesc();
+
 }

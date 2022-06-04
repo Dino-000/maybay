@@ -4,6 +4,7 @@ import com.axonactive.homeSpringBoot.entity.Aircraft;
 import com.axonactive.homeSpringBoot.entity.Flight;
 
 import java.time.LocalTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -24,4 +25,6 @@ public interface FlightService {
 
     List<Flight> findByDepartureTimeBefore(LocalTime time);
     Map<String,Integer> countFlightPerDepartureTerminal();
+
+    List<Flight> findByAllBoeingCanExecute();
 }

@@ -86,6 +86,11 @@ public class FlightServiceImplTest {
         assertEquals(5,flightService.countFlightPerDepartureTerminal().get("SGN"));
     }
 
+    //--28. Tìm các chuyến bay có thể được thực hiện bởi tất cả các loại máy bay Boeing.
+    @Test
+    void testFindByAllBoeingCanExecute_shouldReturn10_whenCheckSize(){
+        assertEquals(10,flightService.findByAllBoeingCanExecute().size());
+    }
 
 
 }

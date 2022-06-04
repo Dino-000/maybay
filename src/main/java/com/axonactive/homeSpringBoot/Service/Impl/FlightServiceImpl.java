@@ -120,5 +120,10 @@ public class FlightServiceImpl implements FlightService {
     return flightPerDepartureTerminal;
   }
 
+  @Override
+  public List<Flight> findByAllBoeingCanExecute() {
+    return flightRepository.findByAllBoeingCanExecute();
+  }
+
 
 }

@@ -27,4 +27,6 @@ public interface CertificateService {
 
 
     List <CertificateNumberOfAirCraftPerPilotDto> findNumberOfAircraftPerPilot();
+
+    int findSumPilotSalary();
 }

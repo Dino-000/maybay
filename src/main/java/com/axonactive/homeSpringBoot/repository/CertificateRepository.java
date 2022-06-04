@@ -51,4 +51,9 @@ public interface CertificateRepository extends JpaRepository<Certificate, Intege
           "GROUP BY c.employee.id " +
           "ORDER BY COUNT(c.aircraft) DESC")
     List<CertificateNumberOfAirCraftPerPilotDto> findNumberOfAircraftPerPilot();
+
+  @Query(value="select sum(e.salary)\n" +
+          "from Employee e " +
+          "WHERE e.id IN (SELECT distinct c1.employee.id FROM Certificate c1)")
+    int findSumPilotSalary();
 }

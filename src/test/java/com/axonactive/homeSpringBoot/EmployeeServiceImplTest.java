@@ -22,6 +22,9 @@ public class EmployeeServiceImplTest {
 
     //Cho biết mã số của các nhân viên có lương cao nhất.
     @Test
-    void testFindBy
+    void testFindFirstByOrderBySalaryDesc_shouldReturn1_whenCheckSize(){
+        assertEquals("269734834",employeeService.findFirstByOrderBySalaryDesc());
+        assertEquals(289950,employeeService.findById(employeeService.findFirstByOrderBySalaryDesc()).get().getSalary());
+    }
 
 }

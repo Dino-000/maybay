@@ -86,6 +86,11 @@ public class CertificateServiceImpl implements CertificateService {
         return certificateRepository.findNumberOfAircraftPerPilot();
     }
 
+    @Override
+    public int findSumPilotSalary() {
+        return certificateRepository.findSumPilotSalary();
+    }
+
 
     public Set<String> findNameByAircraftTypeContaining(String containingWord) {
         Set<String> nameCanUseBoeing= new HashSet<>();

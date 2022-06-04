@@ -78,5 +78,12 @@ public class CertificateServiceImplTest {
         assertEquals(7,certificateService.findNumberOfAircraftPerPilot().get(1).getCountOfAircraftCertificate());
     }
 
+    //--27. Cho biết tổng số lương phải trả cho các phi công.
+    @Test
+    void testFindSumPilotSalary_shouldReturn2064793_whenCall(){
+        assertEquals(2064793,certificateService.findSumPilotSalary());
+    }
+
+
 
 }
